@@ -6,10 +6,12 @@ interface Props {
 const { title } = Astro.props;
 import meta from "../../astro-seo.config";
 import Navbar from "../components/navigation/Navbar.astro";
+import "@fontsource-variable/inter";
+import "../styles/global.css";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="robots" content={meta.robots} />
@@ -32,221 +34,22 @@ import Navbar from "../components/navigation/Navbar.astro";
     <meta name="author" content={meta.author} />
     <meta name="keywords" content={meta.keywords} />
     <meta name="referrer" content={meta.referrer} />
-    <meta http-equiv="content-language" content={meta.httpEquiv["content-language"]} />
-    <meta http-equiv="X-UA-Compatible" content={meta.httpEquiv["X-UA-Compatible"]} />
+    <meta
+      http-equiv="content-language"
+      content={meta.httpEquiv["content-language"]}
+    />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content={meta.httpEquiv["X-UA-Compatible"]}
+    />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="bg-surface-light text-text-primary font-sans antialiased">
     <Navbar />
-    <slot />
+    <main class="pt-16 min-h-screen">
+      <slot />
+    </main>
   </body>
 </html>
-<style is:global>
-  @import url("https://fonts.cdnfonts.com/css/sf-pro-display");
-  @import url("https://fonts.cdnfonts.com/css/sf-ui-text-2");
-  @import url("https://fonts.cdnfonts.com/css/helvetica-neue-55");
-
-  :root {
-    --pro-display: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    --pro-text: "SF Pro Text", "SF UI Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
-    --primary-color: #f5f5f7;
-    --secondary-color: #1d1d1f;
-    --secondary-text: #5d5d5f;
-    --tertiary-color: #6e6e73;
-    --button-color: #0071e3;
-    --button-hover-color: #357bd3;
-    --a-color: #222222;
-    --a-hover-color: #357bd3;
-    --navbar-color: rgba(255, 255, 255, 0.72);
-    --stroke: #dbdbdb;
-    --secondary-nav-color: #ffffff;
-    --footnote-color: #424245;
-
-    --color-one: #5412f6;
-    --color-two: #7e1ed8;
-  }
-
-  [data-theme="dark"] {
-    --primary-color: #1d1d1f;
-    --secondary-color: #ffffff;
-    --tertiary-color: #6e6e73;
-    --button-color: #0071e3;
-    --button-hover-color: #357bd3;
-    --a-color: #ffffff;
-    --a-hover-color: #0071e3;
-    --navbar-color: rgba(21, 21, 22, 0.9);
-    --stroke: #3e3e3e;
-    --secondary-nav-color: rgba(21, 21, 22);
-
-    --color-one: #ffffff;
-    --color-two: #ffffff;
-  }
-
-  body {
-    background-color: var(--primary-color);
-    margin: 0;
-    padding-top: 52px;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  body {
-    max-width: 96vw;
-    margin: 50px auto 0;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-
-  a {
-    font-family: var(--pro-text);
-    color: var(--a-color);
-    text-decoration: none;
-    transition: 0.3s;
-  }
-
-  a:hover {
-    color: var(--a-hover-color);
-  }
-
-  button,
-  .button {
-    cursor: pointer;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    background: var(--button-color);
-    color: rgb(255, 255, 255) !important;
-    font-size: 12px;
-    font-family: var(--pro-text);
-    padding: 4px 11px;
-    border-radius: 12px;
-  }
-
-  button:hover,
-  .button:hover {
-    background: var(--button-hover-color);
-  }
-
-  .button-md {
-    cursor: pointer;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    background: var(--button-color);
-    color: rgb(255, 255, 255) !important;
-    font-size: 16px;
-    font-family: var(--pro-text);
-    padding: 8px 16px;
-    border-radius: 18px;
-  }
-
-  .button-md:hover {
-    background: var(--button-hover-color);
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--pro-display);
-    color: var(--secondary-color);
-  }
-
-  h1 {
-    font-size: 40px;
-  }
-
-  p {
-    font-family: var(--pro-text);
-    color: var(--secondary-text);
-    font-size: 21px;
-    max-width: 100%;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-    transition: 0.3s;
-  }
-
-  hr {
-    margin: 10px 0px;
-    width: 100%;
-    border: 1px solid var(--stroke);
-  }
-
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  @media only screen and (max-width: 903px) {
-    button,
-    .button {
-      font-size: 12px;
-      min-width: 20px;
-      padding: 3px 10px;
-      border-radius: 10px;
-    }
-
-    body {
-      max-width: 550px;
-      margin-top: 32px;
-      padding-top: 52px;
-    }
-
-    h1 {
-      font-size: 48px;
-    }
-
-    p {
-      font-size: 18px;
-      max-width: 90%;
-    }
-
-    img {
-      width: 768px;
-    }
-  }
-
-  @media only screen and (max-width: 480px) {
-    button,
-    .button {
-      font-size: 11px !important;
-      min-width: 18px;
-      padding: 2px 6px;
-      border-radius: 8px;
-    }
-
-    body {
-      max-width: 300px;
-      margin-top: 16px;
-      padding-top: 32px;
-    }
-
-    h1 {
-      font-size: 32px;
-    }
-
-    p {
-      font-size: 16px;
-      max-width: 100%;
-    }
-
-    img {
-      width: 480px;
-    }
-  }
-
-  @media (min-width: 1536px) {
-    body {
-      max-width: 70vw;
-    }
-  }
-</style>

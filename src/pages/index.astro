@@ -1,19 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import CTALogo from "../images/mythic_1024_np.png";
-import CTAImage from "../images/mythic-screenshot.png";
+import CTALogo from "@images/mythic_1024_np.png";
+import CTAImage from "@images/mythic-screenshot.png";
 import FeatureSection from "../components/sections/FeatureSection.astro";
 import SocialCard from "../components/ui/SocialCard.astro";
 import Footer from "../components/navigation/Footer.astro";
 
-import FullscreenLibraryScreenshotLight from "../images/app/light/fs_library.png";
-import GameSettingsScreenshotLight from "../images/app/light/gamesettings.png";
-import ImportSheetScreenshotLight from "../images/app/light/importsheet.png";
-import ContainerConfigurationScreenshotLight from "../images/app/light/containerconfiguration.png";
-import AccountManagerScreenshotLight from "../images/app/light/accountmanager.png";
-import SupportViewScreenshotLight from "../images/app/light/supportview.png";
-import MythicXcodeScreenshotLight from "../images/app/light/mythic_xcode.png";
+import FullscreenLibraryScreenshotLight from "@images/app/light/fs_library.png";
+import GameSettingsScreenshotLight from "@images/app/light/gamesettings.png";
+import ImportSheetScreenshotLight from "@images/app/light/importsheet.png";
+import ContainerConfigurationScreenshotLight from "@images/app/light/containerconfiguration.png";
+import AccountManagerScreenshotLight from "@images/app/light/accountmanager.png";
+import MythicXcodeScreenshotLight from "@images/app/light/mythic_xcode.png";
 
 export const features = [
   {
@@ -56,324 +55,180 @@ export const features = [
 
 const socials = [
   {
-    icon: "github",
+    icon: "github" as const,
     title: "Contribute to Mythic",
     desc: "Help in shaping Mythic through pull requests and issues.",
     href: "https://github.com/mythicapp",
     button: "Learn more",
   },
   {
-    icon: "discord",
+    icon: "discord" as const,
     title: "Join the community",
     desc: "Join our Discord community to partake in future updates and discussions.",
     href: "https://discord.gg/58NZ7fFqPy",
     button: "Join the Discord",
   },
   {
-    icon: "heart",
+    icon: "heart" as const,
     title: "Donate to the project",
     desc: "Supercharge Mythic's development and get benefits.",
     href: "https://github.com/sponsors/MythicApp",
     button: "Learn more",
   },
   {
-    icon: "languages",
+    icon: "languages" as const,
     title: "Translate Mythic",
     desc: "Help us translate Mythic into your language, and see it live on the app.",
     href: "https://crowdin.getmythic.app/",
     button: "Learn more",
   },
 ];
-
 ---
 
 <Layout title="Mythic">
-  <Image
-    src={CTALogo}
-    loading="eager"
-    class="ctalogo"
-    alt="Mythic logo"
-    width={"512"}
-  />
-  <h1 class="mythic-gradient-text">
-    The best way to play Windows games on Mac.
-  </h1>
-  <p class="text-balance">An <a href="https://github.com/MythicApp">open-source</a> macOS game launcher with the ability to play Windows® games through a custom implementation of Apple's Game Porting Toolkit — supporting multiple platforms.</p>
-  <br />
-  <a class="button-md" href="/download">
-    Download Alpha
-  </a>
-  <sub>for macOS 14+</sub>
-  <Image
-    class="CTA-Screenshot"
-    src={CTAImage}
-    loading="eager"
-    alt="Mythic app screenshot"
-    inferSize;
-  />
+  <!-- Hero Section -->
+  <section
+    class="flex flex-col items-center justify-center text-center px-6 py-16 md:py-24 max-w-5xl mx-auto"
+  >
+    <Image
+      src={CTALogo}
+      loading="eager"
+      alt="Mythic logo"
+      width={128}
+      height={128}
+      class="w-24 h-24 md:w-32 md:h-32 mb-8 animate-fade-in"
+    />
 
-  <div class="cta-after">
-    <div class="cta-content">
-      <div class="cta-content-header">
-      <h2 style="margin-bottom: 0;">
-        Friends gaming without you?
-      </h2>
-      <h2 class="mythic-gradient-text">
-        Mythic can fix that.
-      </h2>
-      <p>
-        Time to throw all your virtual machines and subscriptions out of the
-        window.
-      </p>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
+      <span class="gradient-text">The best way to play</span>
+      <br />
+      <span class="text-text-primary">Windows games on Mac.</span>
+    </h1>
+
+    <p
+      class="text-lg md:text-xl text-text-secondary max-w-2xl mb-8 text-balance leading-relaxed"
+    >
+      An <a
+        href="https://github.com/MythicApp"
+        class="text-primary hover:underline">open-source</a
+      > macOS game launcher with the ability to play Windows® games through a custom
+      implementation of Apple's Game Porting Toolkit — supporting multiple platforms.
+    </p>
+
+    <div class="flex flex-col items-center gap-3">
+      <a
+        href="/download"
+        class="inline-flex items-center px-8 py-3 text-lg font-medium text-white bg-primary hover:bg-primary-hover rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105"
+      >
+        Download Alpha
+      </a>
+      <span class="text-sm text-text-muted">for macOS 14+</span>
     </div>
 
-      <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
-        {features.slice(0, 3).map((feature, index) => (
-          <div class={index === 0 ? "large-tile" : "small-tile"}>
-            <FeatureSection
-              title={feature.title}
-              desc={feature.desc}
-              image={feature.image}
-              id={index + 1}
-              color={feature.color}
-              footnote={index === 0 ? "Some Windows® games may not be supported for use within Mythic." : index === 2 ? "Steam support is still in development." : ""}
-            />
-          </div>
-        ))}
+    <div
+      class="mt-16 w-full max-w-4xl animate-slide-up"
+      style="animation-delay: 0.2s;"
+    >
+      <Image
+        src={CTAImage}
+        loading="eager"
+        alt="Mythic app screenshot"
+        class="w-full h-auto rounded-2xl shadow-2xl"
+      />
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="w-full bg-gradient-to-b from-surface-light to-white py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2
+          class="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-4"
+        >
+          Friends gaming without you?
+        </h2>
+        <h2
+          class="text-3xl md:text-4xl lg:text-5xl font-bold gradient-text mb-6"
+        >
+          Mythic can fix that.
+        </h2>
+        <p class="text-lg text-text-secondary max-w-xl mx-auto">
+          Time to throw all your virtual machines and subscriptions out of the
+          window.
+        </p>
       </div>
 
-      <div class="grid-container" style="grid-template-columns: 1fr 2fr;">
-        {features.slice(3).map((feature, index) => (
-          <div class={index === 0 ? "large-tile" : "small-tile"} style={index === 0 ? "grid-column: 2;" : "grid-column: 1;"}>
-            <FeatureSection
-              title={feature.title}
-              desc={feature.desc}
-              image={feature.image}
-              id={index + 4}
-              color={feature.color}
-            />
-          </div>
-        ))}
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {
+          features.map((feature, index) => (
+            <div
+              class={
+                index === 0 ? "md:col-span-2 lg:col-span-1 lg:row-span-2" : ""
+              }
+            >
+              <FeatureSection
+                title={feature.title}
+                desc={feature.desc}
+                image={feature.image}
+                id={index + 1}
+                color={feature.color}
+                footnote={
+                  index === 0
+                    ? "Some Windows® games may not be supported for use within Mythic."
+                    : index === 2
+                      ? "Steam support is still in development."
+                      : ""
+                }
+              />
+            </div>
+          ))
+        }
       </div>
 
-      <sub>
-        We have even more to come, check out the{" "}
-        <span>
-          <a href="https://github.com/orgs/MythicApp/projects/2/views/2">
-            roadmap.
-          </a>
-        </span>
-      </sub>
-
-      <sub>
-        (Please note that Mythic is still in its alpha stage of development;
-        expect bugs.)
-      </sub>
-
-      <div class="social_wrap">
-        {socials.map((social, index) => (
-          <SocialCard
-            key={index}
-            icon={social.icon}
-            title={social.title}
-            desc={social.desc}
-            href={social.href}
-            button={social.button}
-            target="_blank"
-          />
-        ))}
+      <div class="text-center space-y-2">
+        <p class="text-sm text-text-muted">
+          We have even more to come, check out the{" "}
+          <a
+            href="https://github.com/orgs/MythicApp/projects/2/views/2"
+            class="text-primary hover:underline"
+          >
+            roadmap
+          </a>.
+        </p>
+        <p class="text-xs text-text-muted">
+          (Please note that Mythic is still in its alpha stage of development;
+          expect bugs.)
+        </p>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Community Section -->
+  <section class="w-full py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2
+        class="text-3xl md:text-4xl font-bold text-center text-text-primary mb-12"
+      >
+        Join the Community
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          socials.map((social) => (
+            <SocialCard
+              icon={social.icon}
+              title={social.title}
+              desc={social.desc}
+              href={social.href}
+              button={social.button}
+              target="_blank"
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
   <Footer />
 </Layout>
-
-<style>
-  body {
-    width: 80vw;
-  }
-
-  .grid-container {
-    display: grid;
-    gap: 20px;
-    row-gap: 0;
-    align-items: center;
-    height: 100%;
-  }
-
-  .large-tile {
-    grid-column: 1;
-    grid-row: 1 / span 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 100%;
-  }
-
-  .small-tile {
-    grid-column: 2;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  }
-
-  @media only screen and (max-width: 1024px) {
-    .grid-container {
-      display: block;
-    }
-
-    .large-tile,
-    .small-tile {
-      grid-column: auto;
-      grid-row: auto;
-      height: auto;
-    }
-  }
-
-  .ctalogo {
-    width: 124px;
-    height: 124px;
-  }
-
-  .mythic-gradient-text {
-    display: inline;
-    --bg-size: 400%;
-    background: linear-gradient(
-        90deg,
-        var(--color-one),
-        var(--color-two),
-        var(--color-one)
-      )
-      0 0 / var(--bg-size) 100%;
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    animation: move-bg 40s infinite ease-in-out;
-    margin-bottom: 0;
-  }
-
-  @keyframes move-bg {
-    0% {
-      background-position: 0 0;
-    }
-
-    25% {
-      background-position: 100% 0;
-    }
-
-    50% {
-      background-position: 100% 100%;
-    }
-
-    75% {
-      background-position: 0 100%;
-    }
-
-    100% {
-      background-position: 0 0;
-    }
-  }
-
-  .CTA-Screenshot {
-    margin-bottom: 100px;
-    opacity: 0;
-    animation: pop-in 1s ease-in-out forwards;
-  }
-
-  .social_wrap {
-    display: grid;
-    text-align: left;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    width: 100%;
-    margin: 50px auto 0;
-  }
-
-  .social_wrap > * {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%; /* Ensure each card takes full height */
-    padding: 20px; /* Add padding for content */
-    box-sizing: border-box; /* Include padding in element's total width and height */
-  }
-
-  @media only screen and (max-width: 600px) {
-    .social_wrap {
-      grid-template-columns: 1fr; /* Single column on small screens */
-    }
-  }
-
-  sub {
-    margin-top: 0.5rem;
-    font-family: var(--pro-text);
-    color: var(--footnote-color);
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-
-  @keyframes pop-in {
-    0% {
-      transform: translateY(20px);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media only screen and (max-width: 903px) {
-    .ctalogo {
-      margin-top: 20px;
-      width: 64px;
-      height: 64px;
-    }
-
-    sub {
-      font-size: 12px;
-    }
-
-    .cta-after {
-      width: 400px;
-    }
-  }
-
-  @media only screen and (max-width: 480px) {
-    sub {
-      font-size: 10px;
-    }
-  }
-
-  .cta-after {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    background: linear-gradient(to bottom, #fcfcfc 0%, #f2f2f5 10%);
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .cta-content {
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-
-  .cta-content-header {
-    margin: 5%;
-  }
-
-  .cta-content-header h2 {
-    font-size: 4rem
-  }
-
-  .social_wrap {
-    display: grid;
-    gap: 1rem;
-  }
-</style>

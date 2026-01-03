@@ -1,90 +1,39 @@
 ---
-const { title, desc, image, color, footnote = "" } = Astro.props;
+interface Props {
+  title: string;
+  desc: string;
+  image: ImageMetadata;
+  color?: string;
+  footnote?: string;
+  id?: string | number;
+}
+
+const { title, desc, image, color = "#a046ff", footnote = "" } = Astro.props;
 import { Image } from "astro:assets";
 ---
 
-<div class="feature-card">
-  <div class="feature-text">
-    <h3 style={`color: ${color};`}>{title}</h3>
-    <p>{desc}</p>
+<article
+  class="group flex flex-col bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-stroke-light/50"
+>
+  <div class="mb-4">
+    <h3 class="text-lg font-semibold mb-2" style={`color: ${color};`}>
+      {title}
+    </h3>
+    <p class="text-text-secondary text-base leading-relaxed">{desc}</p>
   </div>
-  <div class="feature-image">
-    <Image src={image} loading="lazy" alt="Mythic feature" />
+
+  <div class="relative overflow-hidden rounded-xl">
+    <Image
+      src={image}
+      loading="lazy"
+      alt={title}
+      class="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-500"
+    />
   </div>
-  {footnote && (
-    <div class="feature-footnote">
-      <p>{footnote}</p>
-    </div>
-  )}
-</div>
 
-<style>
-  .feature-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    background-color: var(--secondary-nav-color);
-    padding: 20px;
-    border-radius: 16px;
-    margin-bottom: 20px;
-    height: 100%;
+  {
+    footnote && (
+      <p class="mt-4 text-xs text-text-muted text-center">{footnote}</p>
+    )
   }
-
-  .feature-image {
-    width: 100%;
-    scale: 1.08;
-    height: auto;
-    position: relative;
-    overflow: visible;
-  }
-
-  .feature-image img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    display: block;
-  }
-
-  @media (hover: hover) and (min-width: 768px) {
-    .feature-image img:hover {
-      transform: scale(1.02);
-    }
-  }
-
-  .feature-text {
-    padding-bottom: 24px;
-    max-width: 100%;
-    overflow-wrap: anywhere;
-  }
-
-  .feature-text h3 {
-    font-size: 19px;
-    margin-bottom: 10px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-
-  .feature-text p {
-    font-size: 17px;
-    max-width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    color: #1d1d1f;
-  }
-
-  .feature-footnote {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    text-align: center;
-    width: 100%;
-  }
-
-  .feature-footnote p {
-    font-size: 12px;
-    color: var(--footnote-color);
-  }
-</style>
+</article>

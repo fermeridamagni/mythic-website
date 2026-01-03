@@ -1,77 +1,29 @@
 ---
 const currentYear = new Date().getFullYear();
 import { Image } from "astro:assets";
-import WhiskyWineLogo from "../../images/svg/light/Powered By WhiskyWine.light.svg";
+import WhiskyWineLogo from "@images/svg/light/Powered By WhiskyWine.light.svg";
 ---
 
-<footer class="footer">
-  <div class="footer-logos">
-    <a href="https://getwhisky.app" target="_blank">
-      <Image src={WhiskyWineLogo} alt="Powered By WhiskyWine" loading="eager" class="platform-card" />
+<footer class="w-full border-t border-stroke-light bg-surface-light mt-16">
+  <div
+    class="max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+  >
+    <a
+      href="https://getwhisky.app"
+      target="_blank"
+      rel="noopener"
+      class="opacity-70 hover:opacity-100 transition-opacity"
+    >
+      <Image
+        src={WhiskyWineLogo}
+        alt="Powered By WhiskyWine"
+        loading="eager"
+        class="h-8 w-auto"
+      />
     </a>
+
+    <p class="text-sm text-text-muted">
+      &copy; {currentYear} Mythic. All rights reserved.
+    </p>
   </div>
-
-  <p class="copyright">
-    &copy; {currentYear} Mythic. All rights reserved.
-  </p>
 </footer>
-
-<style>
-  .footer {
-    width: 100vw;
-    font-family: var(--pro-text);
-    background-color: var(--primary-color);
-    font-size: 14px;
-    color: var(--secondary-text);
-    border-top: 1px solid var(--stroke);
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 20px;
-    box-sizing: border-box;
-    position: relative;
-  }
-
-  .footer-logos {
-    position: absolute;
-    left: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 10px;
-    max-width: 150px;
-    max-height: 150px;
-  }
-
-  .platform-card {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .copyright {
-    font-size: 12px;
-    color: var(--secondary-text);
-    margin: 0;
-    text-align: center;
-  }
-
-  /* Responsive adjustments for smaller screens */
-  @media (max-width: 480px) {
-    .footer {
-      flex-direction: column;
-      padding: 20px;
-      display: inline;
-    }
-
-    .footer-logos {
-      position: absolute;
-      margin-bottom: 15px;
-      max-width: 100%;
-      grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-    }
-
-    .platform-card {
-      max-width: 60px;
-    }
-  }
-</style>

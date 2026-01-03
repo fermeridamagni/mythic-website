@@ -1,29 +1,35 @@
 ---
+interface Props {
+  question: string;
+  answer: string;
+  id: string;
+}
+
 const { question, answer, id } = Astro.props;
 ---
 
-<details>
-  <summary id={id}>{question}</summary>
-  <Fragment set:html={answer} />
+<details class="group w-full">
+  <summary
+    id={id}
+    class="flex items-center justify-between w-full py-4 text-left text-lg font-semibold text-text-primary cursor-pointer hover:text-mythic-purple transition-colors"
+  >
+    <span>{question}</span>
+    <svg
+      class="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform duration-200"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </summary>
+  <div
+    class="pb-4 text-text-secondary leading-relaxed prose prose-sm max-w-none prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
+  >
+    <Fragment set:html={answer} />
+  </div>
 </details>
-
-<style>
-  summary {
-    width: 100%;
-    text-align: left;
-    font-family: var(--pro-display);
-    color: var(--a-color);
-    font-size: 22px;
-    font-weight: bold;
-    cursor: pointer;
-    margin: 10px;
-  }
-
-  details {
-    width: 100%;
-    text-align: left;
-    font-family: var(--pro-text);
-    color: var(--secondary-text);
-    font-size: 20px;
-  }
-</style>
